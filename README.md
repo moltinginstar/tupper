@@ -1,6 +1,15 @@
-# Tupper
+<div align="center">
+  <h1>
+    <img
+      src="assets/logo.png"
+      alt="tupper"
+      width="400"
+    />
+  </h1>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+</div>
 
 This is a simple command-line tool to plot text using [Tupper's self-referential formula](https://en.wikipedia.org/wiki/Tupper%27s_self-referential_formula).
 
