@@ -21,16 +21,17 @@ def tupper(x: int, y: int) -> bool:
   return 0.5 < ((y // 17) // (2 ** (17 * x + y % 17))) % 2
 
 
-def plot_text(text: str) -> int:
+def plot_text(text: str, size: int = 7) -> int:
   """Plot the given text using Tupper's formula.
 
   Args:
     text: The text to plot.
+    size: The font size.
 
   Returns:
     The computed k value.
   """
-  font = ImageFont.load_default(size=7)
+  font = ImageFont.load_default(size=size)
 
   image = Image.new("1", SIZE, color=0)
   draw = ImageDraw.Draw(image)
@@ -57,7 +58,7 @@ def save_tupper_to_image(k: int, path: Path) -> None:
     k: The k value representing the text.
     path: The path to save the image.
   """
-  fig, ax = plt.subplots()
+  fig, ax = plt.subplots(figsize=(SIZE[0] / 10, SIZE[1] / 10))
   for y in range(SIZE[1]):
     for x in range(SIZE[0]):
       if tupper(x, y + k):
@@ -79,6 +80,7 @@ if __name__ == "__main__":
     prog="tupper",
     description="Plot text using Tupper's formula.",
   )
+  parser.add_argument("-s", "--size", type=int, help="Font size.", default=7)
   parser.add_argument("-o", "--output", type=Path, help="Output file. If not provided, the plot will not be saved.")
   parser.add_argument("-v", "--verbose", action="store_true", help="Print k value.", default=False)
   parser.add_argument("text", type=str, help="Text to plot.")
@@ -86,7 +88,7 @@ if __name__ == "__main__":
 
   text = args.text.strip()
 
-  k = plot_text(args.text)
+  k = plot_text(args.text, args.size)
 
   if args.verbose:
     print("\n---")
